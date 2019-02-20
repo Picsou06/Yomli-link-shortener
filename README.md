@@ -1,6 +1,12 @@
-# Yomli Go
-
-![logo](./tpl/go.png)
+<h1 align="center">
+	<br>
+	<a href="https://apps.yom.li/">
+		<img src="./tpl/go.png" alt="Yomli Go" width="192">
+	</a>
+	<br>
+	Yomli Go
+	<br>
+</h1>
 
 Raccourcisseur d’URL minimaliste basé sur [Go!](http://warriordudimanche.net/article720/go-un-raccourcisseur-d-url). Vous pouvez voir [une démo de la première version](http://go.warriordudimanche.net/) sur le site de Bronco.
 
@@ -33,7 +39,7 @@ Récupérez [l'archive](https://github.com/yomli/yomli-go/archive/master.zip), d
 
 #### Serveur
 
-Logiciels :
+- Apache (optionnel, juste pour la redirection des GET)
 - PHP 5.6+
 - < 500 Ko d'espace disque (si l'on compte large)
 
