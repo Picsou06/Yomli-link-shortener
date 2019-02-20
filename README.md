@@ -1,6 +1,6 @@
 <h1 align="center">
 	<br>
-	<a href="https://apps.yom.li/">
+	<a href="https://apps.yom.li/go/">
 		<img src="./tpl/go.png" alt="Yomli Go" width="192">
 	</a>
 	<br>
@@ -72,6 +72,7 @@ Connectez-vous à la page `admin.php`, que ce soit à partir du lien en haut à 
 
 ## Configuration
 <a id="config" />
+
 Modifiez le fichier `data/config.php` (ou pas, ça fonctionne très bien sans y toucher). Deux paramètres, pour le moment.
 
 ### Sécuriser
