@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Rewrite url from /foo to ?foo
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ ?$1 [L]
+</IfModule>
+
+# Prevent file browsing
+Options -Indexes -MultiViews
