@@ -1,4 +1,6 @@
 # Yomli Go
+![Logo de Yomli Go](./tpl/go.png)
+
 Raccourcisseur d’URL minimaliste basé sur [Go! de Bronco](http://warriordudimanche.net/article720/go-un-raccourcisseur-d-url). Vous pouvez voir une [démo sur le site de Bronco](http://go.warriordudimanche.net/).
 
 ### English
