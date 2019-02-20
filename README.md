@@ -7,4 +7,4 @@ I don't have time to translate this. There are bits of French pretty much everyw
 
 ## Licence
 
-Publié sous licence [faisCeQueTuVeuxMaGueule](http://www.wtfpl.net/). Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+Publié sous licence [FaisCeQueTuVeuxMaGueule](http://www.wtfpl.net/). Voir le fichier [LICENSE](LICENSE) pour plus de détails.
