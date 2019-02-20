@@ -8,7 +8,7 @@
 	<br>
 </h1>
 
-<h4 align="center">Raccourcisseur d’URL minimaliste basé sur <a href="http://go.warriordudimanche.net/" target="_blank">Go!</a>.</h4>
+<h4 align="center">Raccourcisseur d’URL minimaliste basé sur <a href="http://go.warriordudimanche.net/" target="_blank">Go!</a></h4>
 
 <p align="center">
   <a href="#features">Fonctionnalités</a> →
@@ -27,13 +27,20 @@
 
 ## Nouvelles fonctionnalités
 <a id="features" />
+
 - Intégration des QRCodes envoyés par une API externe.
 - Bouton « Copier dans le presse-papier » (nécessite javascript).
-- Interface d'administration tout-en-un : importer/exporter au format json, copier des liens, voir les QRCodes associés, purger l'ensemble des URL…
+- Interface d'administration tout-en-un :
+	* Importer/exporter au format JSON.
+	* Copier des liens simplement.
+	* Voir les QRCodes associés.
+	* Purger l'ensemble des URL…
 
 ![screenshot](https://justpaste.it/img/f7c4ccba22db0f48d14c613c137f8acf.jpg)
 
-- Sécurisation avec [auto_restrict](https://github.com/broncowdd/auto_restrict) avec possibilité de choisir quelle partie rendre privée : la suppression des liens, l'ajout, les deux, voire totalement ouvert. Dans tous les cas, la redirection est accessible à tout le monde.
+- Sécurisation avec [auto_restrict](https://github.com/broncowdd/auto_restrict).
+	* Possibilité de choisir quelle partie rendre privée : la suppression des liens, l'ajout, les deux, voire totalement ouvert. 
+	* Dans tous les cas, la redirection est accessible à tout le monde.
 - Réorganisation des fichiers.
 - Fichier de configuration dans le même répertoire que la base, permettant une sauvegarde simplifiée.
 
@@ -44,6 +51,7 @@
 
 ## Installation
 <a id="install" />
+
 Récupérez [l'archive](https://github.com/yomli/yomli-go/archive/master.zip), dézippez-la sur votre serveur, où vous voulez.
 
 ### Pré-requis
@@ -66,21 +74,31 @@ Connectez-vous à la page `admin.php`, que ce soit à partir du lien en haut à 
 <a id="config" />
 Modifiez le fichier `data/config.php` (ou pas, ça fonctionne très bien sans y toucher). Deux paramètres, pour le moment.
 
-### Privatiser
+### Sécuriser
 ```php
-$privateGo = false;	// Le mot de passe sera demandé pour l'interface d'administration seulement
-$privateGo = true;  // L'ajout de lien demande un mot de passe également
-//$privateGo        // Commenter cette variable désactive toute protection, y compris celle de l'administration
+# Mot de passe sur l'administration seulement
+$privateGo = false;	
+
+# Mot de passe sur l'ajout de liens
+$privateGo = true;
+
+# Commenter pour désactiver toute protection
+//$privateGo
 ```
 
-### Le pourvoyeur de QRCode
+### QRCodes
 ```php
-$qrcodeAPI = "http://domain.tld/qrcode/?size=4&url=";	// L'adresse de l'API générant le QRCode
-$privateGo = "";    // QRCode désactivés
+# L'adresse de l'API générant les QRCodes
+$qrcodeAPI = "http://domain.tld/qrcode/?size=4&url=";
+
+# QRCodes désactivés
+$qrcodeAPI = "";
 ```
+Vous pouvez héberger votre propre API en installant [qrcode-url](https://github.com/timovn/qrcode-url) de Timo Van Neerden.
 
 ## FAQ
 <a id="faq" />
+
 ### J'ai perdu mon mot de passe !
 Pas de panique ! Supprimez simplement le dossier `core/auto_restrict/auto_restrict_files`, et reconnectez-vous à la page `admin.php`. Elle vous permettra de recréer un compte.
 
@@ -90,6 +108,7 @@ I don't have time to translate this. There are bits of French pretty much everyw
 
 ## Crédits
 <a id="credits" />
+
 - [Go!](http://warriordudimanche.net/article720/go-un-raccourcisseur-d-url), par Bronco, sous licence [FaisCeQueTuVeuxMaGueule](http://www.wtfpl.net/).
 - [auto_restrict](https://github.com/broncowdd/auto_restrict), par Bronco.
 
