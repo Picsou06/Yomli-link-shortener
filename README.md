@@ -46,8 +46,10 @@
 
 ![screenshot](https://justpaste.it/img/ed71d51d5a37d56f0c87e7520d259480.jpg)
 
-- Les URL peuvent être au format mydomain.tld/go/*code* en plus de mydomain.tld/go/?*code* (.htaccess, demande un serveur Apache).
+- Les URL peuvent être au format `mydomain.tld/go/code` en plus de `mydomain.tld/go/?code` (.htaccess, demande un serveur Apache).
+- Appel externe par requête `GET` : `https://mydomain.tld/?url=http://long.url&code=foobar`.
 - Nouveau logo.
+
 
 ## Installation
 <a id="install" />
