@@ -75,4 +75,4 @@ I don't have time to translate this. There are bits of French pretty much everyw
 - [auto_restrict](https://github.com/broncowdd/auto_restrict), par Bronco.
 
 ## Licence
-Publié sous licence [FaisCeQueTuVeuxMaGueule](http://www.wtfpl.net/). Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+Publié sous licence [WTFPL](http://www.wtfpl.net/). Voir le fichier [LICENSE](LICENSE) pour plus de détails.
