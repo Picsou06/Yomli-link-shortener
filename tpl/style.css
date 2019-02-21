@@ -1,0 +1,188 @@
+@charset "utf-8";
+body,
+html {
+    height: 100%;
+    min-height: 100%;
+    padding: 0;
+    margin: 0;
+}
+body {
+    background: #f8f8f8;
+    color: rgba(0,0,0,0.8);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+section {
+    flex: none;
+    margin-top: 0;
+    margin-bottom: auto;
+    width: 60%;
+}
+footer {
+    flex: none;
+    text-align: center;
+    opacity: 0.5;
+}
+footer,
+section {
+    padding: 24px;
+}
+h1::before {
+    content: "";
+    display: block;
+    width: 192px;
+    height: 192px;
+    background: url("go.png") no-repeat 50% 25%;
+    margin: 5px auto 10px;
+}
+h1,
+h2,
+h3,
+h4 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+h1 {
+    font-size: 2em;
+}
+h2 {
+	margin: 24px auto;
+	text-align: left;
+	font-weight: normal;   
+}
+h3 {
+	margin: 24px auto;
+	font-weight: normal;   
+}
+h4 {
+    margin-bottom: 24px;
+}
+a,
+h1,
+h4,
+th {
+    font-weight: 600;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+img {
+    display: block;
+    margin: 24px auto;
+}
+
+#button-admin,
+#button-back {
+    position: absolute;
+    top: 24px;
+}
+#button-admin {
+    right: 24px;
+}
+#button-back {
+    left: 24px;
+}
+#button-purge {
+	margin: 24px auto;
+    background: #C34147;
+    color: #fff;
+}
+#clipboard {
+    display: inline-block;
+    margin: 0 1em;
+    position: relative;
+}
+.copied + a {
+    position: relative;
+}
+#clipboard.copied::after,
+.copied + a::after {
+    content: "Copié";
+    display: inline-block;
+    border: 1px solid rgba(0,0,0,0.1);
+    color: #000;
+    background: #f8f8f8;
+    font-size: 0.7em;
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute;
+    left: 3em;
+    font-weight: normal;
+}
+.copied + a::after {
+    left: 1em;
+}
+form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+}
+input {
+    margin: 5px;
+    flex: 3 1 50%;
+    font-family: inherit;
+}
+.button.text,
+input {
+    height: 3rem;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 3px;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.08);
+    font-size: 1em;
+    padding: 0 0.6em;
+}
+.button.text,
+input[type=submit] {
+    flex: 1 1 20%;
+    cursor: pointer;
+    background: #5766AD;
+    color: #fff;
+    font-weight: 600;
+}
+input[name=url] {
+    flex: 1 1 100%;
+}
+.button.text {
+    line-height: 3rem;
+    text-align: center;
+    font-size: 1em;
+    display: block;
+    width: 50%;
+}
+table {
+    margin: 24px auto;
+    border-collapse: collapse;
+    width: 100%;
+}
+@media screen and (max-width: 800px) {
+    tr {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+    td,
+    th {
+        flex: 1 1 10%;
+        text-align: center;
+    }
+}
+mark {
+    display: block;
+    width: 100%;
+    border-radius: 3px;
+    background-color: inherit;
+    color: inherit;
+}
+.hidden {
+    display: none;
+}
+

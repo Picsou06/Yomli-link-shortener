@@ -25,6 +25,21 @@
 $privateGo = false;
 
 /*
+ *	Strip question mark from generated URL
+ *	eg mydomain.tld/?code → mydomain.tld/code
+ *
+ * Shortened url continues to be accessible using
+ * mydomain.tld/?code
+ *
+ * Needs .htaccess (see the one offered)
+ *
+ * $stripQuestion = true; // Strip question mark
+ * $stripQuestion = false; // Don't question mark
+ *
+ */
+$stripQuestion = true;
+
+/*
  *	QRCode
  *
  *	Just provide an URL to display QRCode
@@ -36,5 +51,4 @@ $privateGo = false;
  *	
  *	Leave empty if you want to disable QRCode
  */
-// $qrcodeAPI = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=";
-$qrcodeAPI = "http://localhost/vhosts/apps.yom.li/qrcode/?q=";
+$qrcodeAPI = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=";

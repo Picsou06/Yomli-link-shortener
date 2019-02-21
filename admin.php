@@ -1,63 +1,31 @@
 <?php
-# raccourcisseur d'url par Bronco: http://warriordudimanche.net
-# modifié par Yomli
+	/**
+	 * Go admin page.
+	 *
+	 * If you're wondering what this is all about,
+	 * check out the README.md file.
+	 *
+	 * Project repo:        https://github.com/yomli/yomli-go
+	 *
+	 */
 
-include('data/config.php');
-include('core/lib.php');
+include 'data/config.php';
+include 'core/lib.php';
+$databaseFile = 'data/base.php';
 
-// Note: vu que PHP considère que false est empty,
-// il suffit de vérifier que $privateGo n'est pas commenté
+// Password protection
 if(isset($privateGo)) {
 	$auto_restrict['root']='./';
 	$auto_restrict['path_from_root']='core/auto_restrict';
 	$auto_restrict['redirect_success']='admin.php';
-	include($auto_restrict['root'].$auto_restrict['path_from_root'].'/auto_restrict.php');	
+	include $auto_restrict['root'].$auto_restrict['path_from_root'].'/auto_restrict.php';	
 }
 
 // Load base
-if (is_file('data/base.php')) {
-	$base=load('data/base.php');
+if (is_file($databaseFile)) {
+	$base = load($databaseFile);
 } else { 
-	$base=[];
-}
-
-// Delete URL
-if (isset($_GET['delete'])) {
-	if (!empty($base[$_GET['delete']])) {
-		unset($base[$_GET['delete']]);
-	    save('data/base.php',$base);	
-	    $msg='Redirection supprimée.';
-	}
-}
-
-// Purge base
-if (isset($_GET['purge'])) {
-	if (is_file('data/base.php')) {
-		$success=unlink('data/base.php');
-		if ($success) {
-			$msg='Base purgée.';
-		} else {
-			$msg='La base n\'a pas pu être purgée. Supprimez le fichier data/base.php';
-		}
-	}
-}
-
-// Export base
-if (isset($_GET['export'])) {
-	if (is_file('data/base.php')) {
-		$export = 'data/go-export_'.date('Y-m-d_His').'.json';
-		$success = writeJSON($base, $export);
-		if ($success) {
-			$success = downloadFile($export);
-			if (!$success) {
-				$msg = "Problème de téléchargement. Votre export est disponible à l'emplacement <a href='".$export."'>".$export."</a>";
-			}
-		} else {
-			$msg = "Erreur d'écriture.";
-		}
-	} else {
-		$msg = "Il n'y a rien à exporter.";
-	}
+	$base = [];
 }
 
 // Import base
@@ -68,9 +36,9 @@ if (isset($_FILES['import'])) {
 		$json = readJSON($file);
 		if(is_array($json)) {
 			foreach ($json as $code => $url) {
-				$base[$code]=strip_tags($url);
+				$base[$code] = strip_tags($url);
 			}
-			save('data/base.php',$base);
+			save($databaseFile,$base);
 			$msg = "Les liens ont bien été importés.";
 		} else {
 			$msg = "Erreur de lecture du fichier.";
@@ -83,41 +51,75 @@ if (isset($_FILES['import'])) {
 	}
 }
 
+// Export base
+if (isset($_GET['export'])) {
+	if (is_file($databaseFile)) {
+		$export = 'data/go-export_'.date('Y-m-d_His').'.json';
+		$success = writeJSON($base, $export);
+		if ($success) {
+			$success = downloadFile($export);
+			if (!$success) {
+				$msg = "Problème de téléchargement.";
+				$msg .= "Votre export est disponible à l'emplacement <a href='".$export."'>".$export."</a>";
+			}
+		} else {
+			$msg = "Erreur d'écriture.";
+		}
+	} else {
+		$msg = "Il n'y a rien à exporter.";
+	}
+}
+
+// Delete URL
+if (isset($_GET['delete'])) {
+	if (!empty($base[$_GET['delete']])) {
+		unset($base[$_GET['delete']]);
+		save($databaseFile,$base);	
+		$msg = 'Redirection supprimée.';
+	}
+}
+
+// Purge base
+if (isset($_GET['purge'])) {
+	$base = [];
+	save($databaseFile,$base);
+	$msg = 'Base purgée.';
+}
+
 ?>
 
-<?php include('tpl/tpl.header.php'); ?>
-
-<a href="<?php echo (isset($privateGo)) ? '?logout=ok' : 'index.php'; ?>" class="button admin" title="Déconnexion">⚙️</a>
-
-<?php if (empty($msg)) { ?>
-	<h2>Importer des liens</h2>
-	<form action="admin.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="import" required="true"/>
-        <input type="submit" name="submit" value="Importer des URL"/>
-        <?php if(isset($privateGo)) { newToken(); } ?>
-        <a href="admin.php?export&token=<?php if(isset($privateGo)) { newToken(true); } ?>" class="button text">📤&nbsp;Exporter vos URL</a>
-    </form>
+	<?php include 'tpl/header.html'; ?>
 	
-	<h2>Supprimer un lien</h2>
-
-	<?php if (!empty($base)) { ?>
-
-	<form action="admin.php" method="get">
-		<input required="true" type="text" name="delete" placeholder="Tapez le texte du raccourci"/>
-		<input type="submit" value="Supprimer"/>
-		<?php if(isset($privateGo)) { newToken(); } ?>
-	</form>
+	<a href="<?php echo (isset($privateGo)) ? '?logout=ok' : 'index.php'; ?>" class="button" id="button-admin" title="Déconnexion">⚙️</a>
 	
+	<?php if (empty($msg)) { ?>
+		<h2>Importer des liens</h2>
+		<form action="admin.php" method="post" enctype="multipart/form-data">
+			<input type="file" name="import" required="true"/>
+			<input type="submit" name="submit" value="Importer des URL"/>
+			<?php if(isset($privateGo)) { newToken(); } ?>
+			<a href="admin.php?export&token=<?php if(isset($privateGo)) { newToken(true); } ?>" class="button text">Exporter les URL</a>
+		</form>
+		
+		<h2>Supprimer un lien</h2>
+		<?php if (!empty($base)) { ?>
 	
-		<table>
-			<tr>
-				<th>URL</th>
-				<th>Code</th>
-				<?php if(!empty($qrcodeAPI)){echo '<th>&nbsp;</th>';} ?>
-				<th>&nbsp;</th>
-			</tr>
-			<?php foreach ($base as $code => $url) { 
-					$str=addSlash(str_replace('admin.php','',getURL())).$code;
+			<form action="admin.php" method="get">
+				<input required="true" type="text" name="delete" placeholder="Tapez le texte du raccourci"/>
+				<input type="submit" value="Supprimer"/>
+				<?php if (isset($privateGo)) { newToken(); } ?>
+			</form>
+			
+			<table>
+				<tr>
+					<th>URL</th>
+					<th>Code</th>
+					<?php if (!empty($qrcodeAPI)) { echo '<th>&nbsp;</th>'; } ?>
+					<th>&nbsp;</th>
+				</tr>
+				<?php foreach ($base as $code => $url) { 
+					$question = ($stripQuestion) ? '' : '?';
+					$str = addSlash(str_replace('admin.php','',getURL())).$question.$id;
 				?>
 					<tr>
 						<td><a href="<?php echo $url; ?>"><?php echo $url; ?></a></td>
@@ -126,19 +128,19 @@ if (isset($_FILES['import'])) {
 						<td><a href="admin.php?delete=<?php echo $code; ?>&token=<?php if(isset($privateGo)) { newToken(true); } ?>" class="button" title="Supprimer">❌</a></td>
 					</tr>
 				<?php } ?>
-		</table>
-
-		<h2>Purger les liens</h2>
-		<p>Attention, cela va supprimer tous les liens !
-			<a href="admin.php?purge&token=<?php if(isset($privateGo)) { newToken(true); } ?>" class="button red text">☠️&nbsp;Purger</a>
-		</p>
-
-	<?php include('tpl/tpl.script.php'); 
-		} else { 
-			echo '<h3>Aucun lien à supprimer.</h3>'; 
-		}
-	 } else { 
-	 	echo '<h3>'.$msg.'</h3><a href="admin.php" class="button back" title="Retour">⬅️</a>'; } 
-	 ?>
-
-<?php include('tpl/tpl.footer.php'); ?>
+			</table>
+		
+			<h2>Purger les liens</h2>
+			<mark>Attention, cela va supprimer tous les liens !
+				<a href="admin.php?purge&token=<?php if(isset($privateGo)) { newToken(true); } ?>" class="button text" id="button-purge">☠️&nbsp;Purger</a>
+			</mark>
+	
+			<script type="text/javascript" src="tpl/script.js"></script>
+	
+		<?php } else { echo '<h3>Aucun lien à supprimer.</h3>'; } ?>
+			
+	<?php } else { echo '<h3>'.$msg.'</h3>'; ?>
+		<a href="admin.php" class="button" id="button-back" title="Retour">⬅️</a>
+	<?php } ?>
+	
+	<?php include 'tpl/footer.html'; ?>
