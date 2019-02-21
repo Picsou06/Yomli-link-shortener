@@ -19,7 +19,7 @@
   <a href="#license">Licence</a>
 </p>
 
-![screenshot](https://justpaste.it/img/ed3604e3307282e5ef49a3b1a7deb908.jpg)
+![screenshot](https://apps.yom.li/go/screenshots/screen1.png)
 
 > **English:** Yomli Go is an url shortener written in PHP. It requires no database, not even SQLite (links are stored in an encrypted PHP file). I just wanted to have pretty much all the good features of [Lstu](https://lstu.fr/) in less than 50KB of PHP, for a personal server. See the [FAQ in English](#faq-english).
 
@@ -35,21 +35,16 @@
 	* Copier des liens simplement.
 	* Voir les QRCodes associés.
 	* Purger l'ensemble des URL…
-
-![screenshot](https://justpaste.it/img/f7c4ccba22db0f48d14c613c137f8acf.jpg)
-
 - Sécurisation avec [auto_restrict](https://github.com/broncowdd/auto_restrict).
 	* Possibilité de choisir quelle partie rendre privée : la suppression des liens, l'ajout, les deux, voire totalement ouvert. 
 	* Dans tous les cas, la redirection est accessible à tout le monde.
 - Réorganisation des fichiers.
 - Fichier de configuration dans le même répertoire que la base, permettant une sauvegarde simplifiée.
-
-![screenshot](https://justpaste.it/img/ed71d51d5a37d56f0c87e7520d259480.jpg)
-
 - Les URL peuvent être au format `mydomain.tld/go/code` en plus de `mydomain.tld/go/?code` (.htaccess, demande un serveur Apache).
 - Appel externe par requête `GET` : `https://mydomain.tld/?url=http://long.url&code=foobar`.
 - Nouveau logo.
 
+![screenshot](https://apps.yom.li/go/screenshots/screen2.png)
 
 ## Installation
 <a id="install" />
