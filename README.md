@@ -84,6 +84,14 @@ $privateGo = true;
 //$privateGo
 ```
 
+### URL sans `?`
+```php
+# Liens sous la forme
+# mydomain.tld/code
+$stripQuestion = true;	
+```
+Nécessite l'emploi du `.htaccess` fourni.
+
 ### QRCodes
 ```php
 # L'adresse de l'API générant les QRCodes
