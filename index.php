@@ -47,7 +47,7 @@ if (isset($_GET['url'])) {
 	$question = ($stripQuestion) ? '' : '?';
 	$str = addSlash(str_replace('index.php','',getURL())).$question.$id;
 	$msg = 'Votre URL raccourcie&nbsp;:';
-	$msg .= '<a href="'.$str.'">'.$str.'</a></strong>';
+	$msg .= '<a href="'.$str.'" data-code="'.$id.'" id="short-link">'.$str.'</a></strong>';
 	$msg .= '<a href="#" title="Copier dans le presse-papier" id="clipboard" class="hidden button" onclick="copyThis(\''.$str.'\', this)">📋</a>';
 }
 
@@ -68,15 +68,16 @@ if (!empty($_GET)&&count($_GET)==1){
 	<?php include 'tpl/header.html'; ?>
 
 	<a href="admin.php" class="button" id="button-admin" title="Administration">⚙️</a>
+	<a href="user.php" class="button hidden" id="button-user">Mes liens</a>
 
 	<?php if (empty($msg)) { ?>
 
-	<form action="index.php" method="get">
-		<input type="url" name="url" placeholder="URL à raccourcir" required />
-		<input type="text" name="code" placeholder="Raccourci personnalisé (optionnel)"/>
-		<input type="submit" value="Go&nbsp;!"/>
-		<?php if ($privateGo) { newToken(); } ?>
-	</form>	
+		<form action="index.php" method="get">
+			<input type="url" name="url" placeholder="URL à raccourcir" required />
+			<input type="text" name="code" placeholder="Raccourci personnalisé (optionnel)"/>
+			<input type="submit" value="Go&nbsp;!"/>
+			<?php if ($privateGo) { newToken(); } ?>
+		</form>	
 
 	<?php } else { 
 			echo '<h3>'.$msg.'</h3><a href="'.$_SERVER['HTTP_REFERER'].'" class="button" id="button-back" title="Retour">⬅️</a>'; 
@@ -89,5 +90,59 @@ if (!empty($_GET)&&count($_GET)==1){
 				copyButton.classList.remove('hidden');
 			//]]></script> 
 	<?php } ?>
+
+
+	<?php if (isset($_GET['url'])) { ?>
+		<script type="text/javascript">//<![CDATA[
+			;(function (window, document, undefined) {
+				// Feature test for localStorage
+				if(!('localStorage' in window)) return;
+				var shortLink = document.getElementById('short-link').getAttribute('data-code');
+				var data = [];
+				// Get links
+				var localLinks = localStorage.getItem('go--links');
+				if (!localLinks) {
+					data[0] = shortLink;
+				} else {
+					data = JSON.parse(localLinks);
+					data.push(shortLink);
+				}
+				localStorage.setItem('go--links', JSON.stringify(data));
+			})(window, document);	
+		//]]></script>
+	<?php } ?>
+
+	<script type="text/javascript">//<![CDATA[
+		;(function (window, document, undefined) {
+			// Feature test for localStorage
+			if(!('localStorage' in window)) return;
+			
+			// Get links
+			var localLinks = localStorage.getItem('go--links');
+			if (!localLinks) return;
+			
+			// Create a form to POST
+			var form = document.createElement('form');
+			form.style.visibility = 'hidden';
+			form.method = 'POST';
+			form.action = 'user.php';
+			var input = document.createElement('input');
+			input.name = 'links';
+			input.value = localLinks;
+			form.appendChild(input);
+			document.body.appendChild(form);
+			
+			// Unhide 'My links'
+			var userButton = document.getElementById('button-user');
+			userButton.classList.remove('hidden');
+
+			// On click, post to user
+			userButton.addEventListener('click', function(e){
+				e.preventDefault();
+				e.stopPropagation();
+    			form.submit();
+ 			}, false);
+		})(window, document);	
+	//]]></script>
 
 	<?php include 'tpl/footer.html'; ?>
