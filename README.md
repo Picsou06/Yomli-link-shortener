@@ -66,6 +66,7 @@ Récupérez [l'archive](https://github.com/yomli/yomli-go/archive/master.zip), d
 
 - Javascript pour la copie dans le presse-papier (optionnel)
 - Cookies pour la connexion à l'administration
+- Navigateur supportant `localStorage` et `File API` pour le stockage des liens (optionnel)
 
 ### Première visite
 Connectez-vous à la page `admin.php`, que ce soit à partir du lien en haut à droite, ou directement par l'URL. Lors de la première visite, on vous demandera de remplir un identifiant et un mot de passe.
