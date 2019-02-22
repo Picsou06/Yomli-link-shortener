@@ -53,7 +53,7 @@ if (isset($_FILES['import'])) {
 
 // Export base
 if (isset($_GET['export'])) {
-	if (is_file($databaseFile)) {
+	if (!empty($base)) {
 		$export = 'data/go-export_'.date('Y-m-d_His').'.json';
 		$success = writeJSON($base, $export);
 		if ($success) {
@@ -95,7 +95,7 @@ if (isset($_GET['purge'])) {
 	<?php if (empty($msg)) { ?>
 		<h2>Importer des liens</h2>
 		<form action="admin.php" method="post" enctype="multipart/form-data">
-			<input type="file" name="import" required="true"/>
+			<input type="file" name="import" />
 			<input type="submit" name="submit" value="Importer des URL"/>
 			<?php if(isset($privateGo)) { newToken(); } ?>
 			<a href="admin.php?export&token=<?php if(isset($privateGo)) { newToken(true); } ?>" class="button text">Exporter les URL</a>
@@ -119,7 +119,7 @@ if (isset($_GET['purge'])) {
 				</tr>
 				<?php foreach ($base as $code => $url) { 
 					$question = ($stripQuestion) ? '' : '?';
-					$str = addSlash(str_replace('admin.php','',getURL())).$question.$id;
+					$str = addSlash(str_replace('admin.php','',getURL())).$question.$code;
 				?>
 					<tr>
 						<td><a href="<?php echo $url; ?>"><?php echo $url; ?></a></td>

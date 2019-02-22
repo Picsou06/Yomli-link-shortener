@@ -38,6 +38,9 @@
 - Sécurisation avec [auto_restrict](https://github.com/broncowdd/auto_restrict).
 	* Possibilité de choisir quelle partie rendre privée : la suppression des liens, l'ajout, les deux, voire totalement ouvert. 
 	* Dans tous les cas, la redirection est accessible à tout le monde.
+- Interface de gestions des liens utilisateur :
+	* Importer/exporter au format JSON.
+	* Afficher les liens stockés dans le navigateur.
 - Réorganisation des fichiers.
 - Fichier de configuration dans le même répertoire que la base, permettant une sauvegarde simplifiée.
 - Les URL peuvent être au format `mydomain.tld/go/code` en plus de `mydomain.tld/go/?code` (.htaccess, demande un serveur Apache).
@@ -63,6 +66,7 @@ Récupérez [l'archive](https://github.com/yomli/yomli-go/archive/master.zip), d
 
 - Javascript pour la copie dans le presse-papier (optionnel)
 - Cookies pour la connexion à l'administration
+- Navigateur supportant `localStorage` et `File API` pour le stockage des liens (optionnel)
 
 ### Première visite
 Connectez-vous à la page `admin.php`, que ce soit à partir du lien en haut à droite, ou directement par l'URL. Lors de la première visite, on vous demandera de remplir un identifiant et un mot de passe.
@@ -107,6 +111,18 @@ Vous pouvez héberger votre propre API en installant [qrcode-url](https://github
 
 ### J'ai perdu mon mot de passe !
 Pas de panique ! Supprimez simplement le dossier `core/auto_restrict/auto_restrict_files`, et reconnectez-vous à la page `admin.php`. Elle vous permettra de recréer un compte.
+
+### Je ne suis pas administrateur, comment retrouver mes liens ?
+Les raccourcis créés sont sauvegardés **dans le navigateur**. Si vous en changez, vous devez exporter les liens depuis l'ancien navigateur pour les importer dans le nouveau. Pour ce faire :
+- Dans l'ancien navigateur :
+    * Cliquez sur le bouton **Mes liens**
+    * Cliquez sur **Exporter les URL**
+    * Téléchargez le fichier `go-mylinks_[DATE].json`
+- Dans le nouveau navigateur :
+    * Ouvrez la page **Mes liens**
+    * Cliquez sur **Parcourir**
+    * Sélectionnez le fichier `go-mylinks_[DATE].json`
+    * Cliquez sur **Importer des URL**
 
 ### English
 <a id="faq-english" />

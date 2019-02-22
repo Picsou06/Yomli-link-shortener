@@ -74,9 +74,9 @@ img {
     display: block;
     margin: 24px auto;
 }
-
 #button-admin,
-#button-back {
+#button-back,
+#button-user {
     position: absolute;
     top: 24px;
 }
@@ -85,6 +85,10 @@ img {
 }
 #button-back {
     left: 24px;
+}
+#button-user {
+    right: 64px;
+    opacity: 0.75;
 }
 #button-purge {
 	margin: 24px auto;
@@ -185,4 +189,3 @@ mark {
 .hidden {
     display: none;
 }
-
