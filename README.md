@@ -74,7 +74,7 @@ Connectez-vous à la page `admin.php`, que ce soit à partir du lien en haut à 
 ## Configuration
 <a id="config" />
 
-Modifiez le fichier `data/config.php` (ou pas, ça fonctionne très bien sans y toucher). Deux paramètres, pour le moment.
+Modifiez le fichier `data/config.php` (ou pas, ça fonctionne très bien sans y toucher).
 
 ### Sécuriser
 ```php
