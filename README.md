@@ -112,6 +112,18 @@ Vous pouvez héberger votre propre API en installant [qrcode-url](https://github
 ### J'ai perdu mon mot de passe !
 Pas de panique ! Supprimez simplement le dossier `core/auto_restrict/auto_restrict_files`, et reconnectez-vous à la page `admin.php`. Elle vous permettra de recréer un compte.
 
+### Je ne suis pas administrateur, comment retrouver mes liens ?
+Les raccourcis créés sont sauvegardés **dans le navigateur**. Si vous en changez, vous devez exporter les liens depuis l'ancien navigateur pour les importer dans le nouveau. Pour ce faire :
+- Dans l'ancien navigateur :
+    * Cliquez sur le bouton **Mes liens**
+    * Cliquez sur **Exporter les URL**
+    * Téléchargez le fichier `go-mylinks_[DATE].json`
+- Dans le nouveau navigateur :
+    * Ouvrez la page **Mes liens**
+    * Cliquez sur **Parcourir**
+    * Sélectionnez le fichier `go-mylinks_[DATE].json`
+    * Cliquez sur **Importer des URL**
+
 ### English
 <a id="faq-english" />
 I don't have time to translate this. There are bits of French pretty much everywhere. If you want to help to translate that into your language I will see what I can do to integrate. The PHP code is straightforward, and easily understood, though. It's not a super duper project, just a good-enough app, modified "à l'arrache".
