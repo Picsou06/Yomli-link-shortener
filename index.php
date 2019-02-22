@@ -34,11 +34,11 @@ if (is_file($databaseFile)) {
 if (isset($_GET['url'])) {
 	if (empty($_GET['code'])) {
 		$id = newid();
-		while (!empty($base[$id])) {
-			$id = newid();
-		}
 	} else {
 		$id = preg_replace('#[^a-zA-Z0-9]#','',$_GET['code']);
+	}
+	while (!empty($base[$id])) {
+		$id = newid();
 	}
 
 	$base[$id] = strip_tags($_GET['url']);
