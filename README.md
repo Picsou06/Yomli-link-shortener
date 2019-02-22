@@ -38,6 +38,9 @@
 - Sécurisation avec [auto_restrict](https://github.com/broncowdd/auto_restrict).
 	* Possibilité de choisir quelle partie rendre privée : la suppression des liens, l'ajout, les deux, voire totalement ouvert. 
 	* Dans tous les cas, la redirection est accessible à tout le monde.
+- Interface de gestions des liens utilisateur :
+	* Importer/exporter au format JSON.
+	* Afficher les liens stockés dans le navigateur.
 - Réorganisation des fichiers.
 - Fichier de configuration dans le même répertoire que la base, permettant une sauvegarde simplifiée.
 - Les URL peuvent être au format `mydomain.tld/go/code` en plus de `mydomain.tld/go/?code` (.htaccess, demande un serveur Apache).
