@@ -21,7 +21,7 @@
 
 ![screenshot](https://apps.yom.li/go/screenshots/screen1.png)
 
-> **English:** Yomli Go is an url shortener written in PHP. It requires no database, not even SQLite (links are stored in an encrypted PHP file). I just wanted to have pretty much all the good features of [Lstu](https://lstu.fr/) in less than 50KB of PHP, for a personal server. See the [FAQ in English](#faq-english).
+> **English:** Yomli Go is an url shortener written in PHP. It requires no database, not even SQLite (links are stored in an encrypted PHP file). I just wanted to have pretty much all the good features of [LSTU](https://lstu.fr/) in less than 50KB of PHP, for a personal server. See the [FAQ in English](#faq-english).
 
 
 
