@@ -60,6 +60,7 @@ Récupérez [l'archive](https://github.com/yomli/yomli-go/archive/master.zip), d
 
 - Apache (optionnel, juste pour la redirection des GET)
 - PHP 5.6+
+- Module PHP JSON (pour l'import/export dans l'administration)
 - < 500 Ko d'espace disque (si l'on compte large)
 
 #### Client
