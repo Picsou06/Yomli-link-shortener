@@ -46,7 +46,7 @@ if (isset($_GET['url'])) {
 
 	$question = ($stripQuestion) ? '' : '?';
 	$str = addSlash(str_replace('index.php','',getURL())).$question.$id;
-	$msg = 'Votre URL raccourcie&nbsp;:';
+	$msg = 'Votre URL raccourcie&nbsp;: ';
 	$msg .= '<a href="'.$str.'" data-code="'.$id.'" id="short-link">'.$str.'</a></strong>';
 	$msg .= '<a href="#" title="Copier dans le presse-papier" id="clipboard" class="hidden button" onclick="copyThis(\''.$str.'\', this)">📋</a>';
 }

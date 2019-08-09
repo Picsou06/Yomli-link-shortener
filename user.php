@@ -79,6 +79,9 @@ if (isset($_POST['links'])) {
 				<?php } ?>
 			</table>
 
+			<h2>Bookmarklet</h2>
+				<p>Placez ce lien dans vos favoris pour raccourcir rapidement une URL : <a href="javascript:void(location.href='<?php echo addSlash(str_replace('admin.php','',getURL())) ?>index.php?code=&url='+encodeURIComponent(document.location.href));">▶️⏩ Raccourcir l'URL</a></p>
+
 			<script type="text/javascript" src="tpl/script.js"></script>
 		<?php } ?>
 
