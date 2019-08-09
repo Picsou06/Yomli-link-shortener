@@ -46,6 +46,7 @@
 - Les URL peuvent être au format `mydomain.tld/go/code` en plus de `mydomain.tld/go/?code` (.htaccess, demande un serveur Apache).
 - Appel externe par requête `GET` : `https://mydomain.tld/?url=http://long.url&code=foobar`.
 - Nouveau logo.
+- Bookmarklet.
 
 ![screenshot](https://apps.yom.li/go/screenshots/screen2.png)
 
