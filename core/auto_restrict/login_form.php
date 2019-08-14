@@ -7,9 +7,13 @@
 	.form_content input {
 		padding: 0.6em 0.6em;
 	}
+	.form_cookie {
+		display: flex;
+		align-items: center;
+	}
 	@viewport{
-	    width: device-width;
-	    zoom:1;
+		width: device-width;
+		zoom:1;
 	}
 </style>
 
@@ -26,7 +30,7 @@
 		<label for='pass'>Mot de passe </label>
 		<input type='password' name='pass' id='pass'  required="required"/>	
 		
-		<?php if($f){echo '<input id="cookie" type="checkbox" value="cookie" name="cookie"/><label for="cookie">Rester connecté</label>';} ?>
+		<?php if($f){echo '<div class="form_cookie"><input id="cookie" type="checkbox" value="cookie" name="cookie"/><label for="cookie">Rester connecté</label></div>';} ?>
 
 		<input type='submit' value='<?php if($f){echo 'Connexion';}else{echo 'Créer un compte';} ?>'/>	
 	</form>
