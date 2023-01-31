@@ -1,11 +1,11 @@
-<?php 
+<?php
 	/**
 	 * Go index page.
 	 *
-	 * If you're wondering what this is all about, 
+	 * If you're wondering what this is all about,
 	 * check out the README.md file.
 	 *
-	 * Project repo:        https://github.com/yomli/yomli-go
+	 * Project repo: https://github.com/yomli/yomli-go
 	 *
 	 */
 
@@ -20,13 +20,13 @@ if ($privateGo) {
 		$auto_restrict['path_from_root']='core/auto_restrict';
 		$auto_restrict['redirect_success']='index.php';
 		include $auto_restrict['root'].$auto_restrict['path_from_root'].'/auto_restrict.php';
-	}	
+	}
 }
 
 // Load base
 if (is_file($databaseFile)) {
 	$base = load($databaseFile);
-} else { 
+} else {
 	$base = [];
 }
 
@@ -77,18 +77,18 @@ if (!empty($_GET)&&count($_GET)==1){
 			<input type="text" name="code" placeholder="Raccourci personnalisé (optionnel)"/>
 			<input type="submit" value="Go&nbsp;!"/>
 			<?php if ($privateGo) { newToken(); } ?>
-		</form>	
+		</form>
 
-	<?php } else { 
-			echo '<h3>'.$msg.'</h3><a href="'.$_SERVER['HTTP_REFERER'].'" class="button" id="button-back" title="Retour">⬅️</a>'; 
+	<?php } else {
+			echo '<h3>'.$msg.'</h3><a href="'.$_SERVER['HTTP_REFERER'].'" class="button" id="button-back" title="Retour">⬅️</a>';
 			if (!empty($qrcodeAPI)&&isset($_GET['url'])) {
-				echo '<img src="'.$qrcodeAPI.urlencode($_GET["url"]).'" class="qrcode" />'; 
+				echo '<img src="'.$qrcodeAPI.urlencode($_GET["url"]).'" class="qrcode" />';
 			} ?>
-			<script type="text/javascript" src="tpl/script.js"></script>
+			<script type="text/javascript" src="tpl/script.min.js"></script>
 			<script type="text/javascript">//<![CDATA[
 				var copyButton = document.getElementById('clipboard');
 				copyButton.classList.remove('hidden');
-			//]]></script> 
+			//]]></script>
 	<?php } ?>
 
 
@@ -108,7 +108,7 @@ if (!empty($_GET)&&count($_GET)==1){
 					data.push(shortLink);
 				}
 				localStorage.setItem('go--links', JSON.stringify(data));
-			})(window, document);	
+			})(window, document);
 		//]]></script>
 	<?php } ?>
 
@@ -116,11 +116,11 @@ if (!empty($_GET)&&count($_GET)==1){
 		;(function (window, document, undefined) {
 			// Feature test for localStorage
 			if(!('localStorage' in window)) return;
-			
+
 			// Get links
 			var localLinks = localStorage.getItem('go--links');
 			if (!localLinks) return;
-			
+
 			// Create a form to POST
 			var form = document.createElement('form');
 			form.style.visibility = 'hidden';
@@ -131,7 +131,7 @@ if (!empty($_GET)&&count($_GET)==1){
 			input.value = localLinks;
 			form.appendChild(input);
 			document.body.appendChild(form);
-			
+
 			// Unhide 'My links'
 			var userButton = document.getElementById('button-user');
 			userButton.classList.remove('hidden');
@@ -142,7 +142,7 @@ if (!empty($_GET)&&count($_GET)==1){
 				e.stopPropagation();
     			form.submit();
  			}, false);
-		})(window, document);	
+		})(window, document);
 	//]]></script>
 
 	<?php include 'tpl/footer.html'; ?>

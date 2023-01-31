@@ -1,4 +1,7 @@
 @charset "utf-8";
+:root {
+	color-scheme: light dark;
+}
 body,
 html {
 	height: 100%;
@@ -13,6 +16,13 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+@media screen and (prefers-color-scheme:dark) {
+	body {
+		background: #121212;
+		color: rgba(250,250,250,0.8);
+	}
 }
 section {
 	flex: none;
@@ -51,11 +61,11 @@ h1 {
 h2 {
 	margin: 24px auto;
 	text-align: left;
-	font-weight: normal;   
+	font-weight: normal;
 }
 h3 {
 	margin: 24px auto;
-	font-weight: normal;   
+	font-weight: normal;
 }
 h4 {
 	margin-bottom: 24px;
@@ -141,6 +151,11 @@ input {
 	box-shadow: 0 2px 3px 0 rgba(0,0,0,0.08);
 	font-size: 1em;
 	padding: 0 0.6em;
+}
+@media screen and (prefers-color-scheme:dark) {
+	.button.text, input {
+		background: #2B2A33;
+	}
 }
 .button.text,
 [type="submit"] {
