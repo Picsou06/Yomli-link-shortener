@@ -1,3 +1,5 @@
+Project transfered to https://codeberg.org/yomli/yomli-go
+
 <h1 align="center">
 	<br>
 	<a href="https://apps.yom.li/go/">
