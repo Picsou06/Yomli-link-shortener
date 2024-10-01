@@ -1,4 +1,4 @@
-Project transfered to https://codeberg.org/yomli/yomli-go
+Ce projet est un fork et une mise à jour de [Yomli-GO](https://github.com/yomli/yomli-go).
 
 <h1 align="center">
 	<br>
