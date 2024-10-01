@@ -37,7 +37,7 @@ $privateGo = false;
  * $stripQuestion = false; // Don't question mark
  *
  */
-$stripQuestion = false;
+$stripQuestion = true;
 
 /*
  *	QRCode

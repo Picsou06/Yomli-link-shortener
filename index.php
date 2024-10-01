@@ -32,36 +32,47 @@ if (is_file($databaseFile)) {
 
 // Add new URL
 if (isset($_GET['url'])) {
-	if (empty($_GET['code'])) {
-		$id = newid();
-	} else {
-		$id = preg_replace('#[^a-zA-Z0-9]#','',$_GET['code']);
-	}
-	while (!empty($base[$id])) {
-		$id = newid();
-	}
+    if (empty($_GET['code'])) {
+        $id = newid();
+    } else {
+        $id = preg_replace('#[^a-zA-Z0-9]#','',$_GET['code']);
+    }
+    while (!empty($base[$id])) {
+        $id = newid();
+    }
 
-	$base[$id] = strip_tags($_GET['url']);
-	save($databaseFile,$base);
+    // Ajouter l'URL et initialiser nb à 0
+    $base[$id] = [
+        'url' => strip_tags($_GET['url']),
+        'nb' => 0
+    ];
+    save($databaseFile, $base);
 
-	$question = ($stripQuestion) ? '' : '?';
-	$str = addSlash(str_replace('index.php','',getURL())).$question.$id;
-	$msg = 'Votre URL raccourcie&nbsp;: ';
-	$msg .= '<a href="'.$str.'" data-code="'.$id.'" id="short-link">'.$str.'</a></strong>';
-	$msg .= '<a href="#" title="Copier dans le presse-papier" id="clipboard" class="hidden button" onclick="copyThis(\''.$str.'\', this)">📋</a>';
+    $question = ($stripQuestion) ? '' : '?';
+    $str = addSlash(str_replace('index.php','',getURL())).$question.$id;
+    $msg = 'Votre URL raccourcie&nbsp;: ';
+    $msg .= '<a href="'.$str.'" data-code="'.$id.'" id="short-link">'.$str.'</a></strong>';
 }
 
 // Any other parameter
-if (!empty($_GET)&&count($_GET)==1){
-	$get = array_keys($_GET);
-	$get = $get[0];
-	if (!empty($base[$get])){
-		header('location: '.$base[$get]);
-		exit;
-	} else {
-		$msg = 'URL inconnue.';
-	}
+if (!empty($_GET) && count($_GET) == 1) {
+    $get = array_keys($_GET);
+    $get = $get[0];
+    
+    // Vérifier si c'est un lien raccourci
+    if (!empty($base[$get])) {
+        // Incrémenter le compteur de visites
+        $base[$get]['nb']++;
+        save($databaseFile, $base);
+        
+        // Rediriger vers le lien original
+        header("Location: " . $base[$get]['url']);
+        exit;
+    } else {
+        $msg = 'URL inconnue.';
+    }
 }
+
 
 ?>
 
