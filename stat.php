@@ -135,7 +135,7 @@ const osData = {
     datasets: [{
         label: 'Systèmes d\'Exploitation',
         data: <?php echo json_encode(array_values($osCount)); ?>,
-        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+        backgroundColor: ['purple', 'Orange', 'Blue', 'Green', 'Yellow'], // Couleurs assignées
         borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1
     }]
@@ -147,7 +147,7 @@ const browserData = {
     datasets: [{
         label: 'Navigateurs',
         data: <?php echo json_encode(array_values($browserCount)); ?>,
-        backgroundColor: 'rgba(153, 102, 255, 0.6)',
+        backgroundColor: ['purple', 'Orange', 'Blue', 'Green', 'Yellow'], // Couleurs assignées
         borderColor: 'rgba(153, 102, 255, 1)',
         borderWidth: 1
     }]
@@ -183,7 +183,7 @@ const visitChart = new Chart(visitCtx, {
 // Créer le graphique du système d'exploitation
 const osCtx = document.getElementById('osChart').getContext('2d');
 const osChart = new Chart(osCtx, {
-    type: 'pie', // Changez en 'bar' ou 'doughnut' si vous préférez
+    type: 'doughnut', // Changez en 'bar' ou 'doughnut' si vous préférez
     data: osData,
     options: {
         responsive: true, // Rendre le graphique réactif
@@ -194,7 +194,7 @@ const osChart = new Chart(osCtx, {
 // Créer le graphique des navigateurs
 const browserCtx = document.getElementById('browserChart').getContext('2d');
 const browserChart = new Chart(browserCtx, {
-    type: 'pie', // Changez en 'bar' ou 'doughnut' si vous préférez
+    type: 'doughnut', // Changez en 'bar' ou 'doughnut' si vous préférez
     data: browserData,
     options: {
         responsive: true, // Rendre le graphique réactif
