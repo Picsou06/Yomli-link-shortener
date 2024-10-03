@@ -8,15 +8,21 @@ function addSlash($string){
     }
 }
 
-function save($file, $data) {
-    file_put_contents($file, json_encode($data));
+function load($file=null){
+    if (empty($file)) {
+    	return false;
+    }
+    return (file_exists($file) ? unserialize(gzinflate(base64_decode(substr(file_get_contents($file),9,-strlen(6))))) : array() );
 }
 
-function load($file) {
-    if (file_exists($file)) {
-        return json_decode(file_get_contents($file), true);
+function save($file=null,$data=null){
+    if (empty($file)) {
+    	return false;
     }
-    return [];
+    if (empty($data)) {
+    	$data=array();
+    }
+    return file_put_contents($file, '<?php /* '.base64_encode(gzdeflate(serialize($data))).' */ ?>');
 }
 
 function getURL(){

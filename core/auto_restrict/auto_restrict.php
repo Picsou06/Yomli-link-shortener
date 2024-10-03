@@ -57,7 +57,6 @@
 	if (!isset($auto_restrict['use_GET_tokens_too'])){				$auto_restrict['use_GET_tokens_too']=true;}
 	if (!isset($auto_restrict['use_ban_IP_on_token_errors'])){		$auto_restrict['use_ban_IP_on_token_errors']=true;}
 	if (!isset($auto_restrict['redirect_error'])){					$auto_restrict['redirect_error']='index.php';}// si précisé, pas de message d'erreur
-	if (!isset($auto_restrict['redirect_success'])){				$auto_restrict['redirect_success']='admin.php';}
 	if (!isset($auto_restrict['domain'])){							$auto_restrict['domain']=$_SERVER['SERVER_NAME'];}
 	if (!isset($auto_restrict['POST_striptags'])){					$auto_restrict['POST_striptags']=true;}// if true, all $_POST data will be strip_taged
 	if (!isset($auto_restrict['GET_striptags'])){					$auto_restrict['GET_striptags']=true;}// if true, all $_GET data will be strip_taged
